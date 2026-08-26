@@ -1,71 +1,81 @@
 # Eightfold Armoury
 
-**The visual registry for Eightfold Harness.**
+**A small, reproducible catalog for Eightfold Harness skins.**
 
-Eightfold Armoury is the presentation layer for [Eightfold Harness](https://github.com/Eightfold-Code/eightfold-harness). It publishes small, auditable **skins** and **themes** that change how Harness looks and feels without changing what it can do.
+Armoury is the presentation layer for [Eightfold Harness](https://github.com/Eightfold-Code/eightfold-harness). It publishes auditable skins and themes that change how Harness looks and feels without changing its capabilities.
 
-Armoury is deliberately separate from [Eightfold Treasury](https://github.com/Eightfold-Code/eightfold-treasury):
+Armoury stays separate from [Eightfold Treasury](https://github.com/Eightfold-Code/eightfold-treasury):
 
-- **Harness** is the engine and runtime.
-- **Treasury** is the catalog of capabilities and adaptations.
-- **Armoury** is the catalog of visual skins and themes.
+- **Harness** owns the runtime.
+- **Treasury** distributes capabilities and adaptations.
+- **Armoury** distributes visual presentation.
 
-> Armoury is a developer preview. The manifest and registry formats may evolve while the Eightfold interfaces are stabilized.
+> Armoury is in developer preview. The manifest and registry formats may change.
 
-## Using Armoury
+## Current catalog
 
-Armoury is consumed through the Eightfold Harness CLI:
+The first published skin is [obsidian](skin/obsidian), a dark, high-contrast theme for focused Harness sessions.
 
-```bash
+The name refers to the visual style only. It is not the [Obsidian.md](https://obsidian.md/) application, integration, or dependency.
+
+The live source of truth is the [registry](registry.json).
+
+## Use Armoury through Harness
+
+~~~bash
 pnpm dsh eightfold armoury list
 pnpm dsh eightfold armoury search dark
-
 pnpm dsh eightfold skin add obsidian
 pnpm dsh eightfold skin use obsidian
+~~~
+
+Update or remove a skin:
+
+~~~bash
 pnpm dsh eightfold skin update obsidian
 pnpm dsh eightfold skin remove obsidian
-```
+~~~
 
-A profile can select a skin independently from its installed adaptations:
+A profile selects a skin independently from its installed adaptations:
 
-```json
+~~~json
 {
   "adaptations": ["session-search", "developer-tools"],
   "skin": "obsidian"
 }
-```
+~~~
 
-A skin is presentation-only. It may define design tokens, typography, component variants, icons, and layout preferences. It must not ship executable behavior or alter permissions.
+## Presentation-only by design
+
+A skin may define:
+
+- Design tokens and color palettes.
+- Typography and density settings.
+- Component variants and layout preferences.
+- Icons and other presentation assets.
+
+A skin must not ship executable behavior, network access, credentials, permission logic, or capability plugins. Functional extensions belong in Treasury.
 
 ## Repository model
 
-### `main`
+### main
 
-The default branch contains the public catalog and the format documentation:
+main contains the public catalog, schemas, and publishing documentation:
 
-```text
+~~~text
 eightfold-armoury/
-├── README.md
 ├── registry.json
 ├── schemas/
 │   ├── registry.schema.json
 │   └── skin.schema.json
 └── docs/
-    ├── architecture.md
-    └── publishing.md
-```
+~~~
 
-### `skin/<name>`
+### skin/<id>
 
-Each published skin has its own branch, for example:
+Each skin has an independent branch, such as skin/obsidian. The published tree contains only the skin package:
 
-```text
-skin/obsidian
-```
-
-The tip of a skin branch contains only the skin package:
-
-```text
+~~~text
 /
 ├── eightfold.skin.json
 ├── README.md
@@ -75,34 +85,44 @@ The tip of a skin branch contains only the skin package:
 │   └── typography.json
 └── presets/
     └── default.json
-```
+~~~
 
-Registry entries pin a full Git commit SHA so installs remain reproducible even when a development branch moves.
+The registry records the branch for discovery and a full commit SHA for reproducible installation. Branches may move; a published commit does not.
 
 ## Installation flow
 
-When Harness installs a skin, it:
+Harness:
 
-1. Fetches and validates `registry.json`.
-2. Resolves the selected skin and its pinned source commit.
-3. Downloads the archive for that exact snapshot.
-4. Validates the root `eightfold.skin.json` manifest.
-5. Validates token and preset paths.
-6. Extracts the skin into the local Armoury state directory.
-7. Records the installed skin ID, version, and source commit.
+1. Fetches and validates registry.json.
+2. Resolves the selected skin and pinned source commit.
+3. Downloads one archive instead of cloning Armoury.
+4. Validates eightfold.skin.json and referenced assets.
+5. Extracts the skin into local Armoury state.
+6. Records the skin ID, version, and source commit.
 
 This keeps skins small, auditable, and independently removable.
 
-## Design goals
+## Publish a skin
 
-- **Visual isolation** — skin packages contain presentation data only.
-- **Small installs** — fetch one skin snapshot instead of cloning the catalog.
-- **Reproducibility** — registry entries resolve to exact Git commits.
-- **Composable profiles** — visual selection stays independent from capabilities.
-- **Simple discovery** — one registry exposes skins and optional collections.
-- **Native Harness integration** — Armoury does not become a second plugin runtime.
+1. Create skin/<id> as a skin-only branch.
+2. Add the root eightfold.skin.json manifest.
+3. Add token, theme, preset, and documentation files.
+4. Validate the manifest against schemas/skin.schema.json.
+5. Commit and push the branch.
+6. Add the skin to registry.json on main.
+7. Pin the registry entry to the full 40-character commit SHA.
+
+See [Architecture](docs/architecture.md) and [Publishing](docs/publishing.md) for the complete format.
+
+## Design principles
+
+- **Visual isolation** — presentation data stays separate from behavior.
+- **Small installs** — fetch one skin snapshot.
+- **Reproducibility** — install exact commits.
+- **Composable profiles** — select presentation independently.
+- **Native integration** — Armoury does not become another plugin runtime.
 
 ## Related projects
 
 - [Eightfold Harness](https://github.com/Eightfold-Code/eightfold-harness) — the runtime.
-- [Eightfold Treasury](https://github.com/Eightfold-Code/eightfold-treasury) — the capability registry.
+- [Eightfold Treasury](https://github.com/Eightfold-Code/eightfold-treasury) — the capability catalog.
