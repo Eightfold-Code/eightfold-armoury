@@ -1,0 +1,7 @@
+{
+  "$schema": "https://github.com/Eightfold-Code/eightfold-armoury/blob/main/schemas/market.schema.json",
+  "schemaVersion": 1,
+  "name": "Obsidian",
+  "description": "A dark, high-contrast Eightfold skin for focused Harness sessions.",
+  "tags": ["dark", "high-contrast", "focused"]
+}
