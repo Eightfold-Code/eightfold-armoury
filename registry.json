@@ -2,6 +2,22 @@
   "$schema": "./schemas/registry.schema.json",
   "schemaVersion": "1.0",
   "updated": "2026-08-26",
-  "skins": {},
+  "skins": {
+    "obsidian": {
+      "id": "obsidian",
+      "name": "Obsidian",
+      "description": "A dark, high-contrast skin for focused Eightfold Harness sessions.",
+      "version": "0.1.0",
+      "source": {
+        "repository": "Eightfold-Code/eightfold-armoury",
+        "branch": "skin/obsidian",
+        "commit": "7b35abd0ef65bb15f9df24c84ace50486aee063e"
+      },
+      "manifest": "eightfold.skin.json",
+      "compatibility": {
+        "eightfoldHarness": ">=0.1.0"
+      }
+    }
+  },
   "collections": {}
 }
