@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0",
+  "id": "obsidian",
+  "mode": "dark",
+  "tokens": {
+    "colors": "tokens/colors.json",
+    "typography": "tokens/typography.json"
+  },
+  "preset": "presets/default.json"
+}

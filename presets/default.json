@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "id": "default",
+  "density": "comfortable",
+  "radii": {
+    "sm": "6px",
+    "md": "10px",
+    "lg": "14px",
+    "pill": "999px"
+  },
+  "elevation": {
+    "raised": "0 8px 24px rgba(0, 0, 0, 0.28)",
+    "floating": "0 16px 48px rgba(0, 0, 0, 0.36)"
+  },
+  "motion": {
+    "enabled": true,
+    "durationFast": "120ms",
+    "durationNormal": "180ms",
+    "easing": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+  },
+  "components": {
+    "button": {
+      "radius": "md",
+      "height": "2.5rem",
+      "focusRing": "2px solid #A7C7FF"
+    },
+    "input": {
+      "radius": "md",
+      "height": "2.625rem",
+      "focusBorder": "#8AB4FF"
+    },
+    "panel": {
+      "radius": "lg",
+      "border": "#2B394B"
+    },
+    "navigation": {
+      "activeBackground": "#202A38",
+      "activeText": "#BCD2FF"
+    }
+  }
+}

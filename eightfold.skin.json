@@ -1,0 +1,20 @@
+{
+  "$schema": "https://github.com/Eightfold-Code/eightfold-armoury/blob/main/schemas/skin.schema.json",
+  "schemaVersion": "1.0",
+  "id": "obsidian",
+  "name": "Obsidian",
+  "version": "0.1.0",
+  "description": "A dark, high-contrast skin for focused Eightfold Harness sessions.",
+  "entry": "theme.json",
+  "tokens": {
+    "colors": "tokens/colors.json",
+    "typography": "tokens/typography.json"
+  },
+  "presets": [
+    "presets/default.json"
+  ],
+  "compatibility": {
+    "eightfoldHarness": ">=0.1.0"
+  },
+  "presentationOnly": true
+}

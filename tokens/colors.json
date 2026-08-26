@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "colors": {
+    "background": "#0A0D12",
+    "surface": "#10151D",
+    "surfaceElevated": "#171E29",
+    "surfaceMuted": "#202A38",
+    "text": "#F3F6FA",
+    "textMuted": "#AAB6C5",
+    "textSubtle": "#77869A",
+    "border": "#2B394B",
+    "borderStrong": "#41536A",
+    "accent": "#8AB4FF",
+    "accentStrong": "#BCD2FF",
+    "accentContrast": "#0C1628",
+    "success": "#6BD89A",
+    "warning": "#F3C969",
+    "danger": "#FF7A90",
+    "focus": "#A7C7FF"
+  }
+}
